@@ -4,21 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/movieFragment">
-<!--    <fragment
-        android:id="@+id/loginFragment"
-        android:name="ir.yara.batman.ui.view.fragments.LoginFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_MovieFragment"
-            app:destination="@id/movieFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
 
-
-    </fragment>-->
     <fragment
         android:id="@+id/movieFragment"
         android:name="com.base.projectmovies.ui.view.fragments.MovieFragment"
@@ -44,6 +30,15 @@
             android:name="imdbID"
             android:defaultValue="None" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/saveMovie"
+        android:name="com.base.projectmovies.ui.view.fragments.SaveMovie"
+        android:label="fragment_save_movie"
+        tools:layout="@layout/fragment_save_movie" >
+        <action
+            android:id="@+id/action_saveMovie_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
 </navigation>

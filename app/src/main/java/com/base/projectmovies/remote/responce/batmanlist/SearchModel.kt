@@ -2,10 +2,16 @@ package com.base.projectmovies.batmanlist
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
 import com.base.projectmovies.remote.BaseResponse
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
+@Entity(
+
+    tableName = "movies"
+)
 data class SearchModel(
     @SerializedName("Title")
     @Expose

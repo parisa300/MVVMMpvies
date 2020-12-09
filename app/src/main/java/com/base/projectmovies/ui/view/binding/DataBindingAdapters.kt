@@ -1,4 +1,4 @@
-package com.base.projectmovies.binding
+package com.base.projectmovies.ui.view.binding
 
 import android.widget.ImageView
 import android.widget.TextView

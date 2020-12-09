@@ -6,15 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.base.projectmovies.api.NetworkApi
+import com.base.projectmovies.batmanlist.SearchModel
 import com.base.projectmovies.const.ApiConstants
 import com.base.projectmovies.detail.DetailListModel
 import com.base.projectmovies.extensions.default
+import com.base.projectmovies.repository.MoviesRepository
 import kotlinx.coroutines.launch
 
 
 class DetailVM @ViewModelInject constructor(
-    private val networkApi: NetworkApi
-
+    private val networkApi: NetworkApi,
+    val moviesRepository: MoviesRepository
     ) : ViewModel() {
 
     var title = MutableLiveData<String>().default("")
@@ -57,6 +59,11 @@ class DetailVM @ViewModelInject constructor(
     fun retry() {
         getDetail()
     }
+    fun saveMovie(article: SearchModel) =viewModelScope.launch {
+        moviesRepository.upsert(article)
+    }
+
+    fun getSavedMovies()=moviesRepository.getSavedMovies()
 
     private fun handleDetail(response: DetailListModel) {
         if (response.responses != "False") {
