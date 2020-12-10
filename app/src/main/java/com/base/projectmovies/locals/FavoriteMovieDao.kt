@@ -9,7 +9,6 @@ import com.base.projectmovies.remote.responce.batmanlist.SearchModel
 import dagger.Provides
 
 @Dao
-
 interface FavoriteMovieDao {
     @Insert
 

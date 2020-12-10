@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 open class BaseFragment : Fragment() {
@@ -27,11 +28,7 @@ open class BaseFragment : Fragment() {
             // Inflate the layout for this fragment
             rootView = inflater?.inflate(layout, container, false)
         } else {
-            // Do not inflate the layout again.
-            // The returned View of onCreateView will be added into the fragment.
-            // However it is not allowed to be added twice even if the parent is same.
-            // So we must remove rootView from the existing parent view group
-            // (it will be added back).
+
             (rootView?.parent as? ViewGroup)?.removeView(rootView)
         }
 
