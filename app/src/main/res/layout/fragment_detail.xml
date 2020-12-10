@@ -289,16 +289,22 @@
             </LinearLayout>
 
         </ScrollView>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_favorite_24"
-            app:fabSize="normal"
-            android:layout_marginBottom="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/toggle_favorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_baseline_favorite_24"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="@+id/header"
+            app:layout_constraintEnd_toEndOf="@+id/header"
+            app:layout_constraintTop_toTopOf="parent" />
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

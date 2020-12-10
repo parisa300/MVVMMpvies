@@ -3,6 +3,7 @@ package com.base.projectmovies.batmanlist
 import android.os.Parcel
 import android.os.Parcelable
 import com.base.projectmovies.remote.BaseResponse
+import com.base.projectmovies.remote.responce.batmanlist.SearchModel
 
 
 data class MovieListModel(

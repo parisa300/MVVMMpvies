@@ -6,17 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.base.projectmovies.api.NetworkApi
-import com.base.projectmovies.batmanlist.SearchModel
 import com.base.projectmovies.const.ApiConstants
 import com.base.projectmovies.detail.DetailListModel
 import com.base.projectmovies.extensions.default
-import com.base.projectmovies.repository.MoviesRepository
+import com.base.projectmovies.locals.FavoriteMovieRepository
+import com.base.projectmovies.remote.responce.batmanlist.SearchModel
+
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 class DetailVM @ViewModelInject constructor(
     private val networkApi: NetworkApi,
-    val moviesRepository: MoviesRepository
+    val favoriteMovieRepository: FavoriteMovieRepository
     ) : ViewModel() {
 
     var title = MutableLiveData<String>().default("")
@@ -59,11 +62,26 @@ class DetailVM @ViewModelInject constructor(
     fun retry() {
         getDetail()
     }
-    fun saveMovie(article: SearchModel) =viewModelScope.launch {
-        moviesRepository.upsert(article)
-    }
 
-    fun getSavedMovies()=moviesRepository.getSavedMovies()
+    fun addToFavorite(movie: SearchModel){
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteMovieRepository.addToFavorite(
+                    SearchModel(
+                            movie.id,
+                            movie.title,
+                            movie.year,
+                            movie.poster
+                    )
+            )
+        }
+    }
+    suspend fun checkMovie(id: String) = favoriteMovieRepository.checkMovie(id)
+
+    fun removeFromFavorite(id: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteMovieRepository.removeFromFavorite(id)
+        }
+    }
 
     private fun handleDetail(response: DetailListModel) {
         if (response.responses != "False") {

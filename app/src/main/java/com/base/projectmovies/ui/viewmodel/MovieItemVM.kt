@@ -1,7 +1,7 @@
 package com.base.projectmovies.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.base.projectmovies.batmanlist.SearchModel
+import com.base.projectmovies.remote.responce.batmanlist.SearchModel
 
 
 class MovieItemVM constructor(

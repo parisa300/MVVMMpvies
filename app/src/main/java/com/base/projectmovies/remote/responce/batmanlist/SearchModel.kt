@@ -1,8 +1,9 @@
-package com.base.projectmovies.batmanlist
+package com.base.projectmovies.remote.responce.batmanlist
 
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.base.projectmovies.remote.BaseResponse
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -13,12 +14,15 @@ import com.google.gson.annotations.SerializedName
     tableName = "movies"
 )
 data class SearchModel(
+        @PrimaryKey(autoGenerate = true)
+       var id :Int? =null,
     @SerializedName("Title")
     @Expose
     var title: String? = null,
     @SerializedName("Year")
     @Expose
     var year: String? = null,
+
     @SerializedName("imdbID")
     @Expose
     var imdbID: String? = null,
@@ -30,6 +34,7 @@ data class SearchModel(
     var poster: String? = null
 ) : BaseResponse(), Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),

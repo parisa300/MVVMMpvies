@@ -11,8 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.base.projectmovies.R
-import com.base.projectmovies.batmanlist.SearchModel
+
 import com.base.projectmovies.databinding.ItemMovieBinding
+import com.base.projectmovies.remote.responce.batmanlist.SearchModel
 import com.base.projectmovies.ui.viewmodel.MovieItemVM
 
 

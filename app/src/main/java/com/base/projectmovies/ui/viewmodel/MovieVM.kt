@@ -6,18 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.base.projectmovies.api.NetworkApi
 import com.base.projectmovies.batmanlist.MovieListModel
-import com.base.projectmovies.batmanlist.SearchModel
+
 import com.base.projectmovies.extensions.default
-import com.base.projectmovies.repository.MoviesRepository
+import com.base.projectmovies.remote.responce.batmanlist.SearchModel
+
 
 import kotlinx.coroutines.launch
 
 
 class MovieVM @ViewModelInject constructor(
     private val networkApi: NetworkApi,
-   val moviesRepository: MoviesRepository
+
 ) : ViewModel() {
-    constructor(moviesRepository: MoviesRepository)
+
 
     var list = MutableLiveData<MutableList<SearchModel>>().default(mutableListOf())
     var loading = MutableLiveData<Boolean>().default(false)

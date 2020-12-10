@@ -1,9 +1,12 @@
 package com.base.projectmovies.base
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -34,7 +37,6 @@ open class BaseFragment : Fragment() {
 
         return rootView
     }
-
     fun initRecyclerView(recyclerView: RecyclerView) {
         recyclerView.setHasFixedSize(true)
     //    recyclerView.itemAnimator = DefaultItemAnimator()

@@ -2,6 +2,7 @@ package com.base.projectmovies.module
 
 import com.base.projectmovies.api.NetworkApi
 import com.base.projectmovies.const.ApiConstants
+import com.base.projectmovies.locals.FavoriteMovieDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -53,4 +54,7 @@ class NetworkModule {
     fun gsonConverterFactory(gson: Gson): GsonConverterFactory {
         return GsonConverterFactory.create(gson)
     }
+
 }
+
+
