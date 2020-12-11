@@ -37,7 +37,7 @@ class DetailVM @ViewModelInject constructor(
     var loading = MutableLiveData<Boolean>().default(false)
     var retry = MutableLiveData<Boolean>().default(false)
     var imdbID = MutableLiveData<String>()
-
+    val detail=MutableLiveData<DetailListModel>()
     fun getImdbID(id: String) {
         imdbID.value = id
     }
@@ -86,6 +86,7 @@ class DetailVM @ViewModelInject constructor(
     private fun handleDetail(response: DetailListModel) {
         if (response.responses != "False") {
             try {
+                detail.value=response
                 title.value = "Title: ".plus(response.Title)
                 year.value = "Year: ".plus(response.Year)
                 rated.value = "Rated: ".plus(response.Rated)

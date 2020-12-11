@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.observe
 import androidx.navigation.navGraphViewModels
 import com.base.projectmovies.BR
 import com.base.projectmovies.R
@@ -17,7 +18,6 @@ import com.base.projectmovies.databinding.FragmentDetailBinding
 import com.base.projectmovies.extensions.autoCleared
 import com.base.projectmovies.remote.responce.batmanlist.SearchModel
 import com.base.projectmovies.ui.viewmodel.DetailVM
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +28,7 @@ import kotlinx.coroutines.withContext
 @AndroidEntryPoint
 class DetailFragment() : BaseFragment() {
     lateinit var DetailVM: DetailVM
+
     lateinit var search :SearchModel
     private val vm by navGraphViewModels<DetailVM>(R.id.nav_graph) {
         defaultViewModelProviderFactory
@@ -56,10 +57,10 @@ class DetailFragment() : BaseFragment() {
 
        binding.setVariable(BR.vm,vm)
         arguments?.let {
-            vm.getImdbID(it.getString("imdbID")!!)
+       vm.getImdbID(it.getString("imdbID")!!)
         }
         vm.getDetail()
-
+observeDetail()
         var _isChecked = false
         CoroutineScope(Dispatchers.IO).launch{
             val count = vm.checkMovie(vm.imdbID.toString())
@@ -79,9 +80,14 @@ class DetailFragment() : BaseFragment() {
             if (_isChecked){
                 vm.addToFavorite(search)
             } else{
-                vm.removeFromFavorite(search.imdbID.toString())
+                vm.removeFromFavorite(search.toString())
             }
          binding.toggleFavorite.isChecked = _isChecked
+        }
+    }
+    private fun observeDetail(){
+        vm.detail.observe(viewLifecycleOwner) {
+            search=SearchModel(it.Title,it.Year,it.imdbID,it.Type,it.Poster)
         }
     }
 

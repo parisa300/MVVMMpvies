@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
 )
 data class SearchModel(
         @PrimaryKey(autoGenerate = true)
-       var id :Int? =null,
+       var id :Int
     @SerializedName("Title")
     @Expose
     var title: String? = null,
@@ -34,7 +34,7 @@ data class SearchModel(
     var poster: String? = null
 ) : BaseResponse(), Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
+         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),

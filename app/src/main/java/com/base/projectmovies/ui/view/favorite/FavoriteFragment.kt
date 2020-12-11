@@ -37,14 +37,14 @@ class FavoriteFragment : Fragment(R.layout.fragment_save_movie){
         adapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallback{
             override fun onItemClick(favoriteMovie: SearchModel) {
                 val movie = SearchModel(
-                    favoriteMovie.id,
+                    favoriteMovie.imdbID,
                     favoriteMovie.title,
                     favoriteMovie.poster,
                     favoriteMovie.year
                 )
            //     Toast.makeText(this, "!! " , Toast.LENGTH_SHORT).show()
                findNavController().navigate(R.id.action_movieFragment_to_DetailFragment).apply {
-                   movie.id
+
 
 
                }
