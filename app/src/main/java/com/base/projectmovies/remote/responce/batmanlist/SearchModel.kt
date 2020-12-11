@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
 )
 data class SearchModel(
         @PrimaryKey(autoGenerate = true)
-       var id :Int
+       var id :Int,
     @SerializedName("Title")
     @Expose
     var title: String? = null,

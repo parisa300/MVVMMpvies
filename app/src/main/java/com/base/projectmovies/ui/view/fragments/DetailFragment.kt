@@ -87,7 +87,7 @@ observeDetail()
     }
     private fun observeDetail(){
         vm.detail.observe(viewLifecycleOwner) {
-            search=SearchModel(it.Title,it.Year,it.imdbID,it.Type,it.Poster)
+            search=SearchModel(id,it.Title,it.Year,it.imdbID,it.Type,it.Poster)
         }
     }
 
